@@ -37,23 +37,23 @@ export function ChatPanel({
   const exampleMessages = [
     {
       heading: 'What are the',
-      subheading: 'trending memecoins today?',
-      message: `What are the trending memecoins today?`
+      subheading: 'primitive data types in JavaScript?',
+      message: `What are the primitive data types in JavaScript?`
     },
     {
-      heading: 'What is the price of',
-      subheading: '$DOGE right now?',
-      message: 'What is the price of $DOGE right now?'
+      heading: 'Can you provide a simple explanation of',
+      subheading: 'hooks in React?',
+      message: 'Can you provide a simple explanation of hooks in React?'
     },
     {
-      heading: 'I would like to buy',
-      subheading: '42 $DOGE',
-      message: `I would like to buy 42 $DOGE`
+      heading: 'How do you set up',
+      subheading: 'an Express server in Node.js?',
+      message: `How do you set up an Express server in Node.js?`
     },
     {
       heading: 'What are some',
-      subheading: `recent events about $DOGE?`,
-      message: `What are some recent events about $DOGE?`
+      subheading: `advantages of TypeScript?`,
+      message: `What are some advantages of TypeScript?`
     }
   ]
 
