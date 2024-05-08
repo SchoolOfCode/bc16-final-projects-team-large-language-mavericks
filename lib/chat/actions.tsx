@@ -147,6 +147,7 @@ async function submitUserMessage(content: string) {
     You should provide links to related learning resources in every response.
     If the user asks for a quiz, please always provide the correct answers in your response alongside the quiz.
     
+    
     Messages inside [] means that it's a UI element or a user event. For example:
     - "[Price of AAPL = 100]" means that an interface of the stock price of AAPL is shown to the user.
     - "[User has changed the amount of AAPL to 10]" means that the user has changed the amount of AAPL to 10 in the UI.
