@@ -12,7 +12,7 @@ jobs:
       - name: push to external repository
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.SHH_DEPLOY_KEY_NADIA }}
+          deploy_key: ${{ secrets.SSH_DEPLOY_KEY_NADIA }}
           publish_dir: .
           external_repository: nashetty/SoC-LLM
           publish_branch: main
