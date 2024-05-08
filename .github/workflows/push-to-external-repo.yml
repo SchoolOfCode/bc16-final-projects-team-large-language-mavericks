@@ -12,8 +12,8 @@ jobs:
       - name: push to external repository
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.SHH_DEPLOY_KEY_JLUDWIG }}
+          deploy_key: ${{ secrets.SHH_DEPLOY_KEY_NADIA }}
           publish_dir: .
-          external_repository: Ludwig-J/SoC_chatbot_project_copyJL
+          external_repository: nashetty/SoC-LLM
           publish_branch: main
           allow_empty_commit: true
