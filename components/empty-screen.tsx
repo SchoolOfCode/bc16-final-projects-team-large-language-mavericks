@@ -13,15 +13,7 @@ export function EmptyScreen() {
         </h1>
         <p className="leading-normal text-muted-foreground">
           This is an open source AI chatbot app template built with{' '}
-          <ExternalLink href="https://nextjs.org">Next.js</ExternalLink>, the{' '}
-          <ExternalLink href="https://sdk.vercel.ai">
-            Vercel AI SDK
-          </ExternalLink>
-          , and{' '}
-          <ExternalLink href="https://vercel.com/storage/kv">
-            Vercel KV
-          </ExternalLink>
-          .
+          Next.js, the Vercel AI SDK, and Vercel KV.
         </p>
         <p className="leading-normal text-muted-foreground">
           It uses{' '}
