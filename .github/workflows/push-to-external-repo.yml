@@ -1,0 +1,19 @@
+name: (main) push to external repo
+on:
+  push:
+    branches:
+      - main
+jobs:
+  push-to-external-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: push to external repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.SHH_DEPLOY_KEY_JLUDWIG }}
+          publish_dir: .
+          external_repository: Ludwig-J/SoC_chatbot_project_copyJL
+          publish_branch: main
+          allow_empty_commit: true
