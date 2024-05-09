@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  push-to-external-repo:
+  push-to-external-repo-NS:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
@@ -15,5 +15,19 @@ jobs:
           deploy_key: ${{ secrets.SSH_DEPLOY_KEY_NADIA }}
           publish_dir: .
           external_repository: nashetty/SoC-LLM
+          publish_branch: main
+          allow_empty_commit: true
+          
+  push-to-external-repo-JL:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: push to external repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.SSH_DEPLOY_KEY_JLUDWIG }}
+          publish_dir: .
+          external_repository: Ludwig-J/SoC_chatbot_project_copyJL
           publish_branch: main
           allow_empty_commit: true
