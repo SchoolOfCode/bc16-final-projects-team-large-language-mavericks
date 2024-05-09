@@ -31,3 +31,17 @@ jobs:
           external_repository: Ludwig-J/SoC_chatbot_project_copyJL
           publish_branch: main
           allow_empty_commit: true
+
+  push-to-external-repo-YS:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: push to external repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.SSH_YULIIA }}
+          publish_dir: .
+          external_repository: yuliiastrizhalko/BOTYS
+          publish_branch: main
+          allow_empty_commit: true
