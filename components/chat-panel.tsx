@@ -36,26 +36,40 @@ export function ChatPanel({
 
   const exampleMessages = [
     {
-      heading: 'What are the',
-      subheading: 'primitive data types in JavaScript?',
+      key: 1,
       message: `What are the primitive data types in JavaScript?`
     },
     {
-      heading: 'Can you provide a simple explanation of',
-      subheading: 'hooks in React?',
+      key: 2,
       message: 'Can you provide a simple explanation of hooks in React?'
     },
     {
-      heading: 'How do you set up',
-      subheading: 'an Express server in Node.js?',
+      key: 3,
       message: `How do you set up an Express server in Node.js?`
     },
     {
-      heading: 'What are some',
-      subheading: `advantages of TypeScript?`,
+      key: 4,
       message: `What are some advantages of TypeScript?`
-    }
+    },
+    {
+      key: 5,
+      message: `Explain useReducer in React`
+    },
   ]
+
+  function randomNumbers() {
+    let randomNumber: Set<number> = new Set()
+    //get 4 unique numbers
+    while (randomNumber.size < 4) {
+      randomNumber.add(Math.floor(Math.random() * 4))
+    }
+    let randomChoice: { key: number; message: string }[] = []
+    randomNumber.forEach((value) => {
+      randomChoice.push(exampleMessages[value])
+    })
+    return randomChoice
+  }
+const randomQuestions = randomNumbers()
 
   return (
     <div className="fixed inset-x-0 bottom-0 w-full bg-gradient-to-b from-muted/30 from-0% to-muted/30 to-50% duration-300 ease-in-out animate-in dark:from-background/10 dark:from-10% dark:to-background/80 peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
@@ -67,9 +81,9 @@ export function ChatPanel({
       <div className="mx-auto sm:max-w-2xl sm:px-4">
         <div className="mb-4 grid grid-cols-2 gap-2 px-4 sm:px-0">
           {messages.length === 0 &&
-            exampleMessages.map((example, index) => (
+            randomQuestions.map((example, index) => (
               <div
-                key={example.heading}
+                key={example.key}
                 className={`cursor-pointer rounded-lg border bg-white p-4 hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900 ${
                   index > 1 && 'hidden md:block'
                 }`}
@@ -93,12 +107,8 @@ export function ChatPanel({
                 }}
               >
                 <div className="text-sm font-semibold">
-                  {example.heading} {example.subheading}
+                  {example.message} 
                 </div>
-                {/* <div className="text-sm text-zinc-600">
-                  {example.heading}
-                  {example.subheading}
-                </div> */}
               </div>
             ))}
         </div>
