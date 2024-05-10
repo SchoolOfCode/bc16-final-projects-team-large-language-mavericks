@@ -92,15 +92,18 @@ export function ChatPanel({
                   ])
                 }}
               >
-                <div className="text-sm font-semibold">{example.heading}</div>
-                <div className="text-sm text-zinc-600">
-                  {example.subheading}
+                <div className="text-sm font-semibold">
+                  {example.heading} {example.subheading}
                 </div>
+                {/* <div className="text-sm text-zinc-600">
+                  {example.heading}
+                  {example.subheading}
+                </div> */}
               </div>
             ))}
         </div>
 
-        {messages?.length >= 2 ? (
+        {/* {messages?.length >= 2 ? (
           <div className="flex h-12 items-center justify-center">
             <div className="flex space-x-2">
               {id && title ? (
@@ -127,7 +130,7 @@ export function ChatPanel({
               ) : null}
             </div>
           </div>
-        ) : null}
+        ) : null} */}
 
         <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg sm:rounded-t-xl sm:border md:py-4">
           <PromptForm input={input} setInput={setInput} />
