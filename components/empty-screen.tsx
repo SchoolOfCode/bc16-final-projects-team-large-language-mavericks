@@ -30,13 +30,6 @@ export function EmptyScreen() {
           <Image src="/tom_reverse.png" alt="tom logo"  width={80} height={80} style={{...imageStyle, 'animation': 'shakeLeft 0.5s 3'}} />
           </div>
         </div>
-        <p className="leading-normal text-muted-foreground">
-          Your guide, your mentor, your learning companion; a transformative
-          experience that goes beyond your regular chatbots. With insights,
-          resources, and quizzes, it propels learners forward. Say farewell to
-          shallow interactions. Our CoachBot: the catalyst for learning
-          excellence.
-        </p>
       </div>
     </div>
   )
