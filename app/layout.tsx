@@ -8,6 +8,8 @@ import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
 import { FooterText } from '@/components/footer'
+import React from "react";
+import { Vortex } from '@/components/ui/vortex'
 
 export const metadata = {
   metadataBase: process.env.VERCEL_URL
@@ -55,11 +57,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <div className="flex flex-col min-h-screen">
             <Header />
+            <Vortex
+        backgroundColor="black"
+        rangeY={800}
+        particleCount={500}
+        baseHue={120}
+        className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
+      >
             <div className="fixed bottom-0 w-full">
               <main className="flex flex-col flex-1 bg-gradient-to-b from-muted/50 via-muted/50 via-95% to-SoCblue">
                 {children}
               </main>
             </div>
+            </Vortex>
           </div>
           <TailwindIndicator />
         </Providers>
