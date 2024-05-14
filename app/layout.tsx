@@ -56,7 +56,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex flex-col min-h-screen">
             <Header />
             <div className="fixed bottom-0 w-full">
-            <main className="flex flex-col flex-1 bg-gradient-to-b from-muted/50 via-muted/50 via-95% to-SoCblue">{children}</main>
+              <main className="flex flex-col flex-1 bg-gradient-to-b from-muted/50 via-muted/50 via-95% to-SoCblue">
+                {children}
+              </main>
             </div>
           </div>
           <TailwindIndicator />
