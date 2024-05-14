@@ -90,12 +90,26 @@ function IconNextChat({
 }
 
 function IconSoCcoach({ className, ...props }: React.ComponentProps<any>) {
-  const images = ['/chrisman.png', '/cat.png', '/chris.png', '/loz.png', '/tom.png']
   
+  // Array of image URLs
+  const images = ['/chrisman.png', '/cat.png', '/chris.png', '/loz.png', '/tom.png']
+
+  // State to hold the randomly selected image URL
+  const [randomImageIndex, setRandomImageIndex] = React.useState('');
+
+  // Function to select a random image URL from the array
+  const selectRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    setRandomImageIndex(images[randomIndex]);
+  };
+
+  // Call selectRandomImage when the component mounts to set an initial random image
+  React.useState(selectRandomImage);
+
   return (
     <Image
-    src={images[0]}
-    alt="Chris Batman of Code"
+    src={randomImageIndex}
+    alt="Icon of SoC Coach"
     width={60}
     height={60}
   />
