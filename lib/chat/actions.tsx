@@ -15,16 +15,12 @@ import {
   BotCard,
   BotMessage,
   SystemMessage,
-  Stock,
   Purchase
 } from '@/components/stocks'
 
 import { z } from 'zod'
 import { EventsSkeleton } from '@/components/stocks/events-skeleton'
 import { Events } from '@/components/stocks/events'
-import { StocksSkeleton } from '@/components/stocks/stocks-skeleton'
-import { Stocks } from '@/components/stocks/stocks'
-import { StockSkeleton } from '@/components/stocks/stock-skeleton'
 import {
   formatNumber,
   runAsyncFnWithoutBlocking,
@@ -145,20 +141,8 @@ async function submitUserMessage(content: string) {
     You and the user can discuss coding and the user can adjust the amount of code they want to learn in the UI.
     You should always provide 2 examples of relevant code whenever possible.
     You should provide links to related learning resources in every response.
-    If the user asks for a quiz, please always provide the correct answers in your response alongside the quiz.
+    If the user asks for a quiz, please always provide the correct answers in your response alongside the quiz`,
     
-    
-    Messages inside [] means that it's a UI element or a user event. For example:
-    - "[Price of AAPL = 100]" means that an interface of the stock price of AAPL is shown to the user.
-    - "[User has changed the amount of AAPL to 10]" means that the user has changed the amount of AAPL to 10 in the UI.
-    
-    If the user requests purchasing a stock, call \`show_stock_purchase_ui\` to show the purchase UI.
-    If the user just wants the price, call \`show_stock_price\` to show the price.
-    If you want to show trending stocks, call \`list_stocks\`.
-    If you want to show events, call \`get_events\`.
-    If the user wants to sell stock, or complete another impossible task, respond that you are a demo and cannot do that.
-    
-    Besides that, you can also chat with users and do some calculations if needed.`,
     messages: [
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
@@ -192,87 +176,8 @@ async function submitUserMessage(content: string) {
       return textNode
     },
     tools: {
-      listStocks: {
-        description: 'List three imaginary stocks that are trending.',
-        parameters: z.object({
-          stocks: z.array(
-            z.object({
-              symbol: z.string().describe('The symbol of the stock'),
-              price: z.number().describe('The price of the stock'),
-              delta: z.number().describe('The change in price of the stock')
-            })
-          )
-        }),
-        generate: async function* ({ stocks }) {
-          yield (
-            <BotCard>
-              <StocksSkeleton />
-            </BotCard>
-          )
-
-          await sleep(1000)
-
-          aiState.done({
-            ...aiState.get(),
-            messages: [
-              ...aiState.get().messages,
-              {
-                id: nanoid(),
-                role: 'function',
-                name: 'listStocks',
-                content: JSON.stringify(stocks)
-              }
-            ]
-          })
-
-          return (
-            <BotCard>
-              <Stocks props={stocks} />
-            </BotCard>
-          )
-        }
-      },
-      showStockPrice: {
-        description:
-          'Get the current stock price of a given stock or currency. Use this to show the price to the user.',
-        parameters: z.object({
-          symbol: z
-            .string()
-            .describe(
-              'The name or symbol of the stock or currency. e.g. DOGE/AAPL/USD.'
-            ),
-          price: z.number().describe('The price of the stock.'),
-          delta: z.number().describe('The change in price of the stock')
-        }),
-        generate: async function* ({ symbol, price, delta }) {
-          yield (
-            <BotCard>
-              <StockSkeleton />
-            </BotCard>
-          )
-
-          await sleep(1000)
-
-          aiState.done({
-            ...aiState.get(),
-            messages: [
-              ...aiState.get().messages,
-              {
-                id: nanoid(),
-                role: 'function',
-                name: 'showStockPrice',
-                content: JSON.stringify({ symbol, price, delta })
-              }
-            ]
-          })
-
-          return (
-            <BotCard>
-              <Stock props={{ symbol, price, delta }} />
-            </BotCard>
-          )
-        }
-      },
+      
+      
       showStockPurchase: {
         description:
           'Show price and the UI to purchase a stock or currency. Use this if the user wants to purchase a stock or currency.',
@@ -465,15 +370,7 @@ export const getUIStateFromAIState = (aiState: Chat) => {
       id: `${aiState.chatId}-${index}`,
       display:
         message.role === 'function' ? (
-          message.name === 'listStocks' ? (
-            <BotCard>
-              <Stocks props={JSON.parse(message.content)} />
-            </BotCard>
-          ) : message.name === 'showStockPrice' ? (
-            <BotCard>
-              <Stock props={JSON.parse(message.content)} />
-            </BotCard>
-          ) : message.name === 'showStockPurchase' ? (
+            message.name === 'showStockPurchase' ? (
             <BotCard>
               <Purchase props={JSON.parse(message.content)} />
             </BotCard>
