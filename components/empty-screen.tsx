@@ -12,7 +12,7 @@ const imageStyle = {
 
 export function EmptyScreen() {
   return (
-    <div className="mx-auto max-w-2xl px-4">
+    <div className="mx-auto max-w-2xl px-4 pt-10">
       <div className="flex flex-col rounded-lg p-1 bg-black items-center gap-2">
         <Vortex
           backgroundColor="black"
