@@ -10,6 +10,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { FooterText } from '@/components/footer'
 import React from 'react'
 import { Vortex } from '@/components/ui/vortex'
+import { Footer } from '@/components/footer'
 
 export const metadata = {
   metadataBase: process.env.VERCEL_URL
@@ -59,13 +60,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Header />
 
             <div className="fixed bottom-0 w-full">
-              <main className="flex flex-col flex-1 bg-gradient-to-b from-muted/50 via-muted/50 via-95% to-SoCblue">
+              <main className="flex flex-col flex-1 ">
                 {children}
               </main>
             </div>
           </div>
           <TailwindIndicator />
         </Providers>
+        <Footer />
       </body>
     </html>
   )
