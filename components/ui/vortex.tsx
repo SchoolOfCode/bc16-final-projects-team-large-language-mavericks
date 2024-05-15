@@ -20,7 +20,7 @@ interface VortexProps {
 
 export const Vortex = (props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const particleCount = props.particleCount || 700
   const particlePropCount = 9
   const particlePropsLength = particleCount * particlePropCount
@@ -62,17 +62,21 @@ export const Vortex = (props: VortexProps) => {
       const ctx = canvas.getContext('2d')
 
       if (ctx) {
-        resize(canvas, ctx)
-        initParticles()
+        resize(canvas, ctx, container)
+        initParticles(container)
         draw(canvas, ctx)
       }
     }
   }
 
-  const initParticles = () => {
+  const initParticles = (container: HTMLDivElement) => {
     tick = 0
     // simplex = new SimplexNoise();
     particleProps = new Float32Array(particlePropsLength)
+    const rect = container.getBoundingClientRect()
+
+    center[0] = rect.width * 0.5
+    center[1] = rect.height * 0.5
 
     for (let i = 0; i < particlePropsLength; i += particlePropCount) {
       initParticle(i)
@@ -155,7 +159,6 @@ export const Vortex = (props: VortexProps) => {
     particleProps[i3] = vx
     particleProps[i4] = vy
     particleProps[i5] = life
-
     ;(checkBounds(x, y, canvas) || life > ttl) && initParticle(i)
   }
 
@@ -188,15 +191,17 @@ export const Vortex = (props: VortexProps) => {
 
   const resize = (
     canvas: HTMLCanvasElement,
-    ctx?: CanvasRenderingContext2D
+    ctx?: CanvasRenderingContext2D,
+    container?: HTMLDivElement
   ) => {
-    const { innerWidth, innerHeight } = window
+    if (!container) return
+    const rect = container.getBoundingClientRect()
 
-    canvas.width = innerWidth
-    canvas.height = innerHeight
+    canvas.width = rect.width
+    canvas.height = rect.height
 
-    center[0] = 0.5 * canvas.width
-    center[1] = 0.5 * canvas.height
+    center[0] = rect.width * 0.5
+    center[1] = rect.height * 0.5
   }
 
   const renderGlow = (
@@ -228,21 +233,24 @@ export const Vortex = (props: VortexProps) => {
 
   useEffect(() => {
     setup()
+    const container = containerRef.current
     window.addEventListener('resize', () => {
       const canvas = canvasRef.current
       const ctx = canvas?.getContext('2d')
-      if (canvas && ctx) {
-        resize(canvas, ctx)
+      if (canvas && ctx && container) {
+        resize(canvas, ctx, container)
       }
     })
   }, [])
 
   return (
-    <div className={cn('relative h-full w-full', props.containerClassName)}>
+    <div
+      className={cn('relative h-full w-full', props.containerClassName)}
+      ref={containerRef}
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        ref={containerRef}
         className="absolute h-full w-full inset-0 z-0 bg-transparent flex items-center justify-center"
       >
         <canvas ref={canvasRef}></canvas>
