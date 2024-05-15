@@ -178,7 +178,7 @@ export function ChatPanel({
   }, [exampleMessages])
 
   return (
-    <div className="fixed inset-x-0 pl-5 bottom-20 w-[calc(100%-20px)] duration-300 ease-in-out animate-in dark:from-background/10 dark:from-10%  peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
+    <div className="fixed inset-x-0 pl-5 bottom-14 w-[calc(100%-20px)] duration-300 ease-in-out animate-in dark:from-background/10 dark:from-10%  peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
       <ButtonScrollToBottom
         isAtBottom={isAtBottom}
         scrollToBottom={scrollToBottom}
@@ -246,7 +246,7 @@ export function ChatPanel({
           </div>
         ) : null} */}
 
-        <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg sm:rounded-3xl sm:border md:py-4">
+        <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg rounded-3xl sm:border md:py-4">
           <PromptForm input={input} setInput={setInput} />
           <FooterText className="hidden sm:block" />
         </div>

@@ -11,7 +11,7 @@ export default async function SignupPage() {
   }
 
   return (
-    <main className="flex flex-col p-4">
+    <main className="flex flex-col p-4 h-dvh justify-center">
       <SignupForm />
     </main>
   )

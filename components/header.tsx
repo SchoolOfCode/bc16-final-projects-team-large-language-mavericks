@@ -28,9 +28,9 @@ async function UserOrLogin() {
           <SidebarToggle />
         </>
       ) : (
-        <Link href="/new" rel="nofollow">
-          <IconNextChat className="size-6 mr-2 dark:hidden" inverted />
-          <IconNextChat className="hidden size-6 mr-2 dark:block" />
+        <Link href="/new" rel="nofollow" className={cn(buttonVariants({ variant: 'ghost' }))}>
+          <IconNextChat className="size-6 mr-2" />
+          
         </Link>
       )}
       <div className="flex items-center">
@@ -38,7 +38,7 @@ async function UserOrLogin() {
         {session?.user ? (
           <UserMenu user={session.user} />
         ) : (
-          <Button variant="link" asChild className="-ml-2">
+          <Button variant="ghost" asChild className="ml-0">
             <Link href="/login">Login</Link>
           </Button>
         )}
@@ -61,7 +61,7 @@ export function Header() {
           target="_blank"
           href="https://learn.schoolofcode.co.uk"
           rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'outline' }))}
+          className={cn(buttonVariants({ variant: 'ghost' }))}
         >
           <Image
           src="/soc_logo.png"
