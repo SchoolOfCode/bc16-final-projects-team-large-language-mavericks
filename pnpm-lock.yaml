@@ -71,6 +71,9 @@ dependencies:
   fs:
     specifier: ^0.0.1-security
     version: 0.0.1-security
+  fs.promises:
+    specifier: ^0.1.2
+    version: 0.1.2
   geist:
     specifier: ^1.2.1
     version: 1.2.1(next@14.2.3)
@@ -2888,6 +2891,11 @@ packages:
       tslib: 2.6.2
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /fs.promises@0.1.2:
+    resolution: {integrity: sha512-LNfkXdN6EToumV455EbdJaNxqLmEFqKqNZVIEyI2whtdpIppTsne2fHWgx05s+B2Aif29Lhzdz0AaOXKLvMGsA==}
+    engines: {node: '>=8.9'}
     dev: false
 
   /fs.realpath@1.0.0:
