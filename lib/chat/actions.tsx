@@ -23,14 +23,12 @@ import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/quiz/message'
 import { Chat } from '@/lib/types'
 import { auth } from '@/auth'
-import { readMarkdownFile } from '../mdReader'
+import { readExternalContent } from '../readExternalContent'
 
 async function submitUserMessage(content: string) {
   'use server'
 
-  const path = 'lib/resources.md'
-
-  const curriculum = await readMarkdownFile(path)
+  const curriculum = await readExternalContent()
 
   const aiState = getMutableAIState<typeof AI>()
 
