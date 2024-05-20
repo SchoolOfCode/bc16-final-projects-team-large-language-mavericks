@@ -2,13 +2,20 @@ import { Client } from '@notionhq/client';
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-(async () => {
+export async function getUrl (tagName:string ){
   const databaseId = 'e0279db6b37943308048d1a36b6aa66d';
   const response = await notion.databases.query({
-    database_id: databaseId
+    database_id: databaseId,
+      filter: {
+          property: "Tags",
+          multi_select: {
+          contains: tagName
+          }
+  }
   });
   console.log(response);
-})();
+  return (response.results[0]["properties"]["URL"]['url'])
+};
 
 
 export async function readExternalContent() {
