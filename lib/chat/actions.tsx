@@ -23,14 +23,17 @@ import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/quiz/message'
 import { Chat } from '@/lib/types'
 import { auth } from '@/auth'
-import { readExternalContent } from '../readExternalContent'
+import { readNotionPageContent } from '../readExternalContent'
 import { getUrl } from '../readExternalContent'
 
 async function submitUserMessage(content: string) {
   'use server'
 
-  const curriculum = await readExternalContent()
-  const curriculumUrl = await getUrl('curriculum')
+  const curriculumObject = await getUrl('curriculum')
+  // console.log(curriculumObject)
+  const curriculumUrl = curriculumObject.url
+  const curriculum = await readNotionPageContent(curriculumObject.pageId)
+  // console.log(curriculum)
 
   const aiState = getMutableAIState<typeof AI>()
 
