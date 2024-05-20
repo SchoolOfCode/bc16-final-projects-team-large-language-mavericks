@@ -1,3 +1,14 @@
+import { Client } from '@notionhq/client';
+
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+
+(async () => {
+  const databaseId = 'e0279db6b37943308048d1a36b6aa66d';
+  const response = await notion.databases.query({
+    database_id: databaseId
+  });
+  console.log(response);
+})();
 
 
 export async function readExternalContent() {
