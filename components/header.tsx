@@ -38,7 +38,7 @@ async function UserOrLogin() {
         {session?.user ? (
           <UserMenu user={session.user} />
         ) : (
-          <Button variant="ghost" asChild className="ml-0">
+          <Button variant="ghost" asChild className="ml-0 font-extrabold">
             <Link href="/login">Login</Link>
           </Button>
         )}
@@ -69,7 +69,30 @@ export function Header() {
           width={30}
           height={30}
         />
-          <span className="hidden ml-2 md:flex">Learn World</span>
+          <span className="hidden ml-2 md:flex font-extrabold">Learn World</span>
+        </a>
+
+        <a
+          target="_blank"
+          href="https://socbrain.vercel.app/login"
+          rel="noopener noreferrer"
+          className={cn(buttonVariants({ variant: 'ghost' }))}
+        >
+          <Image
+          className="dark:hidden"
+          src= "/SoCBrain_light.png"
+          alt="SoCBrain logo"
+          width={78}
+          height={20}
+        />
+          <Image
+          className="hidden dark:block"
+          src="/SoCBrain_dark.png"
+          alt="SoCBrain logo"
+          width={78}
+          height={20}
+        />
+          
         </a>
         <ThemeToggle />
         </div>
