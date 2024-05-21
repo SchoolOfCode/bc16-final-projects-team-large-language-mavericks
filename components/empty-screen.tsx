@@ -19,7 +19,7 @@ export function EmptyScreen() {
           rangeY={100}
           particleCount={50}
           rangeSpeed={0.1}
-          baseHue={120}
+          baseHue={60}
           className="flex items-center flex-col justify-center px-2 md:px-10 py-4 size-full"
         >
           <div className="flex flex-col rounded-lg items-center p-8">
