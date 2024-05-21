@@ -41,28 +41,9 @@ async function UserOrLogin() {
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 flex items-start justify-around w-full h-24 px-4 shrink-0 bg-gradient-to-l from-pink-200 from-5% via-SoCblue via-60% to-SoCbrainblue backdrop-blur-xl">
+    <header className="sticky top-0 z-50 flex items-start justify-around w-full h-24 px-4 shrink-0 bg-gradient-to-r from-SoCbrain via-SoCblue to-SoCbrain dark:from-slate-800 dark:via-cyan-800 dark:to-slate-800 backdrop-blur-xl">
       <div className="flex items-start justify-between w-[640px] my-auto">
-        <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
-          <UserOrLogin />
-        </React.Suspense>
-
-        <a
-          target="_blank"
-          href="https://learn.schoolofcode.co.uk"
-          rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'ghost' }))}
-        >
-          <Image
-            src="/soc_logo.png"
-            alt="dark SoC logo"
-            width={30}
-            height={30}
-          />
-          <span className="hidden ml-2 md:flex font-extrabold">
-            Learn World
-          </span>
-        </a>
+        <ThemeToggle />
 
         <a
           target="_blank"
@@ -85,7 +66,25 @@ export function Header() {
             height={20}
           />
         </a>
-        <ThemeToggle />
+        <a
+          target="_blank"
+          href="https://learn.schoolofcode.co.uk"
+          rel="noopener noreferrer"
+          className={cn(buttonVariants({ variant: 'ghost' }))}
+        >
+          <Image
+            src="/soc_logo.png"
+            alt="dark SoC logo"
+            width={25}
+            height={25}
+          />
+          <span className="hidden ml-2 md:flex font-extrabold">
+            Learn World
+          </span>
+        </a>
+        <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
+          <UserOrLogin />
+        </React.Suspense>
       </div>
     </header>
   )

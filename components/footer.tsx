@@ -12,17 +12,18 @@ export function FooterText({ className, ...props }: React.ComponentProps<'p'>) {
       )}
       {...props}
     >
-      Open source AI chatbot built for {' '}
-      <ExternalLink href="https://learn.schoolofcode.co.uk/">School of Code</ExternalLink>
+      Open source AI chatbot built for{' '}
+      <ExternalLink href="https://learn.schoolofcode.co.uk/">
+        School of Code
+      </ExternalLink>
     </p>
   )
 }
 
-
-export function Footer () {
-return (
-  <footer className="fixed bottom-0 z-50 flex items-start justify-between w-full h-12 px-4 shrink-0 bg-gradient-to-b from-muted/50 to-SoCblue backdrop-blur-xl pt-5">
-  
-  </footer>
-)
+export function Footer() {
+  return (
+    <footer className="flex justify-center w-full">
+      <div className="fixed bottom-0 z-0 flex items-start justify-self-center w-[636px] h-14 px-4 shrink-0 bg-transparent backdrop-blur-md pt-5 -ml-4"></div>
+    </footer>
+  )
 }
