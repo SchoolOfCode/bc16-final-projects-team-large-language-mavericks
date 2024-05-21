@@ -31,7 +31,8 @@ module.exports = {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'
         },
-        "SoCblue": "#32A4DC" ,
+        "SoCblue": "#32A4DC",
+        "SoCbrain": "#CDF6FF",
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
