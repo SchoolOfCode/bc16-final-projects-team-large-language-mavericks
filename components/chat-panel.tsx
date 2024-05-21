@@ -246,7 +246,7 @@ export function ChatPanel({
           </div>
         ) : null} */}
 
-        <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg rounded-3xl sm:border md:py-4">
+        <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg rounded-3xl sm:border md:py-4 -ml-5">
           <PromptForm input={input} setInput={setInput} />
           <FooterText className="hidden sm:block" />
         </div>
