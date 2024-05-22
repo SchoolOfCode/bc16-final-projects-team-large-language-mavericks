@@ -23,12 +23,17 @@ import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/quiz/message'
 import { Chat } from '@/lib/types'
 import { auth } from '@/auth'
-import { readExternalContent } from '../readExternalContent'
+import { readNotionPageContent } from '../readExternalContent'
+import { getUrl } from '../readExternalContent'
 
 async function submitUserMessage(content: string) {
   'use server'
 
-  const curriculum = await readExternalContent()
+  const curriculumObject = await getUrl('curriculum')
+  // console.log(curriculumObject)
+  const curriculumUrl = curriculumObject.url
+  const curriculum = await readNotionPageContent(curriculumObject.pageId)
+  // console.log(curriculum)
 
   const aiState = getMutableAIState<typeof AI>()
 
@@ -56,9 +61,9 @@ async function submitUserMessage(content: string) {
     It is essential that you provide only accurate and reliable information. When responding to user queries, only provide answers if you have high confidence in their correctness. If you are unsure about any part of the answer, do not guess. Instead, admit that you don't have enough information or certainty to fully address that portion of the query, politely indicate that you cannot provide a definitive answer at this time and suggest seeking further assistance from a reliable source.
     Your role is to be a supportive and knowledgeable guide for coding students, breaking down complex topics into understandable steps while openly acknowledging any gaps in your own expertise. The goal is to provide a solid conceptual foundation while directing students to additional credible sources to expand their learning.
     START CURRICULUM BLOCK
-    ${curriculum}
+    ${curriculum} ${curriculumUrl}
     END OF CURRICULUM BLOCK
-    For every answer, read the curriculum and tell the user if the topic is included. After providing links to resources, always report the week in which the topic is covered.  
+    For every answer, read the curriculum and tell the user if the topic is included, also provide the url to the respective week from ${curriculum}, as well as url for the entire curriculum ${curriculumUrl}. After providing links to resources, always report the week in which the topic is covered.  
     Example of how to structure the response
     START OF EXAMPLE BLOCK
     Student: Can you explain recursion with an example?
@@ -75,7 +80,7 @@ async function submitUserMessage(content: string) {
     **For further understanding, you can refer to these additional learning resources:**
     1. [Link 1: Recursion Explained - Codecademy](https://www.codecademy.com/learn/paths/computer-science)
     2. [Link 2: Recursion Tutorial - GeeksforGeeks](https://www.geeksforgeeks.org/recursion/)
-    This topic is covered in **Week 2: Software Engineer** of the School of Code curriculum.
+    This topic is covered in [**Week 2: Software Engineer**] (https://learn.schoolofcode.co.uk/course/software-engineer) of the School of Code curriculum, see the whole curriculum [here] (https://www.notion.so/BC16-Curriculum-ff485db5d9e543bc8ebe6569d6fb68cf)
     END OF EXAMPLE BLOCK `,
 
     messages: [
