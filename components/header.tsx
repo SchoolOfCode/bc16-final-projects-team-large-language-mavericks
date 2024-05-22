@@ -30,7 +30,7 @@ async function UserOrLogin() {
         {session?.user ? (
           <UserMenu user={session.user} />
         ) : (
-          <Button variant="ghost" asChild className="ml-0 font-extrabold">
+          <Button variant="header" asChild className="ml-0 font-extrabold">
             <Link href="/login">Login</Link>
           </Button>
         )}
@@ -41,15 +41,17 @@ async function UserOrLogin() {
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 flex items-start justify-around w-full h-24 px-4 shrink-0 bg-gradient-to-r from-SoCbrain via-SoCblue to-SoCbrain dark:from-slate-800 dark:via-cyan-800 dark:to-slate-800 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 flex items-start justify-around w-full h-24 px-4 shrink-0 bg-gradient-to-r from-SoCblue via-SoCbrain to-SoCblue dark:from-slate-800 dark:via-cyan-800 dark:to-slate-800 backdrop-blur-xl">
       <div className="flex items-start justify-between w-[640px] my-auto">
-        <ThemeToggle />
-
+       
+       <UserOrLogin />
+      
         <a
           target="_blank"
           href="https://socbrain.vercel.app/login"
           rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'ghost' }))}
+          className={cn(buttonVariants({ variant: 'header' }))}
+
         >
           <Image
             className="dark:hidden"
@@ -70,7 +72,7 @@ export function Header() {
           target="_blank"
           href="https://learn.schoolofcode.co.uk"
           rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'ghost' }))}
+          className={cn(buttonVariants({ variant: 'header' }))}
         >
           <Image
             src="/soc_logo.png"
@@ -83,7 +85,7 @@ export function Header() {
           </span>
         </a>
         <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
-          <UserOrLogin />
+            <ThemeToggle />
         </React.Suspense>
       </div>
     </header>
