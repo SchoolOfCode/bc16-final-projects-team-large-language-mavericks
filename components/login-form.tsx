@@ -75,9 +75,15 @@ export default function LoginForm() {
 
       <Link
         href="/signup"
-        className="flex flex-row gap-1 text-sm text-zinc-400"
+        className="flex flex-row gap-1 text-sm text-zinc-400 pt-2"
       >
         No account yet? <div className="font-semibold underline">Sign up</div>
+      </Link>
+      <Link
+        href="/"
+        className="flex flex-row gap-1 text-sm text-zinc-400"
+      >
+        Not ready to log in? <div className="font-semibold underline">Go back</div>
       </Link>
     </form>
   )
@@ -88,7 +94,7 @@ function LoginButton() {
 
   return (
     <button
-      className="my-4 flex h-10 w-full flex-row items-center justify-center rounded-md bg-zinc-900 p-2 text-sm font-semibold text-zinc-100 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+      className="my-4 flex h-10 w-full flex-row items-center justify-center rounded-md dark:bg-slate-500 bg-SoCblue p-2 text-sm font-semibold text-white hover:bg-cyan-600 dark:text-zinc-100 dark:hover:bg-cyan-800"
       aria-disabled={pending}
     >
       {pending ? <IconSpinner /> : 'Log in'}

@@ -190,7 +190,7 @@ export function ChatPanel({
             randomQuestions.map((example, index) => (
               <div
                 key={example.key}
-                className={`cursor-pointer inline-start rounded-3xl border bg-white pl-6 py-2.5 hover:bg-sky-200 dark:bg-zinc-950 dark:hover:bg-sky-700 ${
+                className={`cursor-pointer inline-start rounded-3xl border bg-white pl-6 py-2.5 hover:bg-sky-200 dark:bg-zinc-950 dark:hover:bg-cyan-800 ${
                   index > 1 && 'hidden md:block'
                 }`}
                 onClick={async () => {
