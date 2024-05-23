@@ -14,7 +14,7 @@ import { useStreamableText } from '@/lib/hooks/use-streamable-text'
 
 export function UserMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="group relative flex flex-row-reverse items-start text-right -mr-16 ">
+    <div className="group relative flex flex-row-reverse items-start text-right mr-[-70px] ">
       <div className="flex size-[60px] shrink-0 select-none items-center justify-center rounded-md border bg-background shadow-sm">
         <IconUser />
       </div>
@@ -35,11 +35,13 @@ export function BotMessage({
   const text = useStreamableText(content)
 
   return (
-    <div className={cn('group relative flex items-start -ml-20 my-5', className)}>
+    <div
+      className={cn('group relative flex items-start -ml-10 my-5', className)}
+    >
       <div className="flex size-[60px] shrink-0 select-none items-center justify-center rounded-md border bg-background text-primary-foreground shadow-sm">
         <IconSoCcoach />
       </div>
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
+      <div className=" flex-1 space-y-2 overflow-hidden px-1">
         <MemoizedReactMarkdown
           className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 bg-SoCbrain dark:bg-slate-800 rounded-3xl p-5 text-justify"
           remarkPlugins={[remarkGfm, remarkMath]}

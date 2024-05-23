@@ -24,7 +24,7 @@ export function EmptyScreen() {
         >
           <div className="flex flex-col rounded-lg items-center p-8">
             <h1 className="text-lg text-white font-semibold">
-              Welcome to the School of Code AI Chatbot!
+              Welcome to the School of Code CoachBot!
             </h1>
             <div className="flex flex-row items-center">
               <div className="flex flex-row h-4/5">
