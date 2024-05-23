@@ -14,11 +14,11 @@ import { useStreamableText } from '@/lib/hooks/use-streamable-text'
 
 export function UserMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="group relative flex flex-row-reverse items-start text-right mr-[-70px] ">
-      <div className="flex size-[60px] shrink-0 select-none items-center justify-center rounded-md border bg-background shadow-sm">
+    <div className="group relative flex flex-row-reverse items-start text-right mr-[-60px] ">
+      <div className="flex size-[60px] shrink-0 select-none items-center justify-center rounded-md border bg-background shadow-sm ">
         <IconUser />
       </div>
-      <div className="ml-4 space-y-2 overflow-hidden p-5 rounded-3xl text-justify mr-2 min-h-[60px] text-white bg-SoCblue dark:bg-cyan-800">
+      <div className="ml-7 space-y-2 overflow-hidden p-5 rounded-3xl text-justify mr-2 min-h-[60px] text-white bg-SoCblue dark:bg-cyan-800">
         {children}
       </div>
     </div>
@@ -41,7 +41,7 @@ export function BotMessage({
       <div className="flex size-[60px] shrink-0 select-none items-center justify-center rounded-md border bg-background text-primary-foreground shadow-sm">
         <IconSoCcoach />
       </div>
-      <div className=" flex-1 space-y-2 overflow-hidden px-1">
+      <div className=" flex-1 space-y-2 overflow-hidden px-2">
         <MemoizedReactMarkdown
           className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 bg-SoCbrain dark:bg-slate-800 rounded-3xl p-5 text-justify"
           remarkPlugins={[remarkGfm, remarkMath]}
