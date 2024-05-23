@@ -19,11 +19,11 @@ export function ChatList({ messages, session, isShared }: ChatList) {
     <div className="relative mx-auto max-w-2xl px-4 pt-10">
       {!isShared && !session ? (
         <>
-          <div className="group relative mb-4 flex items-start -ml-20 my-5">
+          <div className="group relative flex items-start -ml-10 my-5">
             <div className="bg-background flex size-[60px] shrink-0 select-none items-center justify-center rounded-md border shadow-sm">
               <ExclamationTriangleIcon />
             </div>
-            <div className="ml-5 space-y-2 overflow-hidden bg-SoCbrain dark:bg-slate-800 rounded-3xl p-5 text-white">
+            <div className="ml-2 space-y-2 overflow-hidden bg-SoCbrain dark:bg-slate-800 rounded-3xl p-5 text-white">
               <p className="text-muted-foreground leading-normal">
                 Please{' '}
                 <Link href="/login" className="underline">
