@@ -7,24 +7,22 @@ const n2m = new NotionToMarkdown({
  });
 
  // function to retrieve url, pageName and pageId, filtered by Tag name
-export async function getUrl (tagName:string ){
+export async function getUrl (){
   const databaseId = 'e0279db6b37943308048d1a36b6aa66d';
   const response = await notion.databases.query({
     database_id: databaseId,
-      filter: {
-          property: "Tags",
-          multi_select: {
-          contains: tagName
-          }
-  }
   });
   console.log(response);
-  return {
-    "url": response.results[0]["properties"]["URL"]['url'], 
-    "pageId": response.results[0]["id"], 
-    "pageName": response.results[0]["properties"]["Name"]["title"][0]["plain_text"]
+  let returnObject = [];
+  for (let i = 0; i < response.results.length; i++) {
+    returnObject.push({"url": response.results[i]["properties"]["URL"]['url'], 
+    "pageId": response.results[i]["id"], 
+    "pageName": response.results[i]["properties"]["Name"]["title"][0]["plain_text"],
+    "tag": response.results[i]["properties"]["Tags"]["multi_select"].map((tag) => tag["name"])
+  })
   }
-};
+  return returnObject
+}
 
 // read Notion page content and return in md format
 export async function readNotionPageContent(pageId: string): Promise<string> {

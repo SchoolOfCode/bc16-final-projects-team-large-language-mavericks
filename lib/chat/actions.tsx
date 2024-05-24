@@ -28,13 +28,31 @@ import { getUrl } from '../readExternalContent'
 
 async function submitUserMessage(content: string) {
   'use server'
+  // get notion data
+  const notionObject = await getUrl()
+  console.log(notionObject)
+  // extract curriculum data
+  const { url: curriculumUrl, pageId: curriculumPageId } = notionObject.find((item) => item.tag.includes('curriculum')) || {};
+  // extract workshops data
+  const workshopItems = notionObject.filter((item) => item.tag.includes('workshop'));
+  const workshops = workshopItems.map(({ url, pageName, tag }) => ({
+    url,
+    pageName, 
+    tag
+  }));
 
-  const curriculumObject = await getUrl('curriculum')
-  // console.log(curriculumObject)
-  const curriculumUrl = curriculumObject.url
-  const curriculum = await readNotionPageContent(curriculumObject.pageId)
-  // console.log(curriculum)
+  // store curriculum in md format
+  let curriculum: string = ''
+  // Now curriculumUrl and curriculumPageId will be undefined if no item is found
+  if (curriculumUrl && curriculumPageId) {
+    curriculum = await readNotionPageContent(curriculumPageId)
+  } else {
+    // Handle the case where no item with the tag 'curriculum' is found
+    console.log('No item found with the tag "curriculum"');
+  }
 
+  console.log(workshops)
+  
   const aiState = getMutableAIState<typeof AI>()
 
   aiState.update({
@@ -63,7 +81,14 @@ async function submitUserMessage(content: string) {
     START CURRICULUM BLOCK
     ${curriculum} ${curriculumUrl}
     END OF CURRICULUM BLOCK
-    For every answer, read the curriculum and tell the user if the topic is included, also provide the url to the respective week from ${curriculum}, as well as url for the entire curriculum ${curriculumUrl}. After providing links to resources, always report the week in which the topic is covered.  
+    START WORKSHOPP BLOCK
+    workshop names are found inside the workshops, which is an array of objects: ${workshops} under the 'pageName' property of each object
+    workshop url is found inside the workshops, which is an array of objects: ${workshops} under the 'url' property of each object
+    END WORKSHOP BLOCK
+    
+    For every answer, read the curriculum and tell the user if the topic is included, also provide the url to the respective week from ${curriculum}, as well as url for the entire curriculum ${curriculumUrl}. 
+    After providing links to resources, always report the week in which the topic is covered. At the end provide a workshop suggestion for a workshop ${workshops.map((workshop) => workshop.pageName)} always including the url to the workshop  ${workshops.map((workshop) => workshop.url)}
+    
     Example of how to structure the response
     START OF EXAMPLE BLOCK
     Student: Can you explain recursion with an example?
@@ -81,6 +106,7 @@ async function submitUserMessage(content: string) {
     1. [Link 1: Recursion Explained - Codecademy](https://www.codecademy.com/learn/paths/computer-science)
     2. [Link 2: Recursion Tutorial - GeeksforGeeks](https://www.geeksforgeeks.org/recursion/)
     This topic is covered in [**Week 2: Software Engineer**] (https://learn.schoolofcode.co.uk/course/software-engineer) of the School of Code curriculum, see the whole curriculum [here] (https://www.notion.so/BC16-Curriculum-ff485db5d9e543bc8ebe6569d6fb68cf)
+    [Here] (https://exampleworkshop.com) is a suggested workshop for this topic 
     END OF EXAMPLE BLOCK `,
 
     messages: [
