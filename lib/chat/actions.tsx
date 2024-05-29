@@ -81,32 +81,37 @@ async function submitUserMessage(content: string) {
     START CURRICULUM BLOCK
     ${curriculum} ${curriculumUrl}
     END OF CURRICULUM BLOCK
-    START WORKSHOPP BLOCK
+    START WORKSHOP BLOCK
     workshop names are found inside the workshops, which is an array of objects: ${workshops} under the 'pageName' property of each object
     workshop url is found inside the workshops, which is an array of objects: ${workshops} under the 'url' property of each object
     END WORKSHOP BLOCK
     
-    For every answer, read the curriculum and tell the user if the topic is included, also provide the url to the respective week from ${curriculum}, as well as url for the entire curriculum ${curriculumUrl}. 
-    After providing links to resources, always report the week in which the topic is covered. At the end provide a workshop suggestion for a workshop ${workshops.map((workshop) => workshop.pageName)} always including the url to the workshop  ${workshops.map((workshop) => workshop.url)}
+    For every answer, read the curriculum and tell the user if the topic is included. Always provide the url to the respective week (learn.schoolofcode.co.uk) that is included in ${curriculum} as per the example below. 
+    Always provide the url for the entire curriculum ${curriculumUrl}, as per the example below. 
+    After providing links to resources, always report the week in which the topic is covered. 
+    At the end always provide all the relevant workshops suggestion from ${workshops.map((workshop) => workshop.pageName)} that is tagged ${workshops.map((workshop) => workshop.tag)} with that particular week in the ${curriculum}. 
+    Always including the url to the workshop  ${workshops.map((workshop) => workshop.url)}.
+    If there are more than 2, make sure you mention all of them. If there are no more than 2, don't guess, only provide what is in the resources ${workshops.map((workshop) => workshop.tag)}
     
     Example of how to structure the response
     START OF EXAMPLE BLOCK
-    Student: Can you explain recursion with an example?
+    Student: Can you explain a for loop with an example?
     AI Coding Instructor: Sure! Recursion is a concept where a function calls itself in its definition. Here's an example to illustrate:
 
-    def countdown(n):
-    if n == 0:
-    print("Blastoff!")
-    else:
-    print(n)
-    countdown(n-1)
-    countdown(5)
-
+    for (let i = 1; i <= 5; i++) {
+      console.log(i);
+    }
     **For further understanding, you can refer to these additional learning resources:**
     1. [Link 1: Recursion Explained - Codecademy](https://www.codecademy.com/learn/paths/computer-science)
     2. [Link 2: Recursion Tutorial - GeeksforGeeks](https://www.geeksforgeeks.org/recursion/)
-    This topic is covered in [**Week 2: Software Engineer**] (https://learn.schoolofcode.co.uk/course/software-engineer) of the School of Code curriculum, see the whole curriculum [here] (https://www.notion.so/BC16-Curriculum-ff485db5d9e543bc8ebe6569d6fb68cf)
-    [Here] (https://exampleworkshop.com) is a suggested workshop for this topic 
+
+    This topic is covered in [**Week 2: Software Engineer**], it can be found in [LearnWorlds](https://learn.schoolofcode.co.uk/course/software-engineer) of the School of Code curriculum, see the whole curriculum [here](https://www.notion.so/BC16-Curriculum-ff485db5d9e543bc8ebe6569d6fb68cf)
+    
+    **School of Code endorsed resources**
+
+    **School of Code Workshop suggestions**
+    [Workshop 1](https://exampleworkshop1.com)
+    [Workshop 2](https://exampleworkshop2.com) 
     END OF EXAMPLE BLOCK `,
 
     messages: [

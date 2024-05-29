@@ -13,7 +13,7 @@ function isPageObjectResponse(response: any): response is PageObjectResponse {
 
  // function to retrieve url, pageName and pageId, filtered by Tag name
 export async function getUrl() {
-  const databaseId = 'e0279db6b37943308048d1a36b6aa66d';
+  const databaseId: string = process.env.NOTION_API_DB_ID!;
   const response = await notion.databases.query({
     database_id: databaseId,
   });
