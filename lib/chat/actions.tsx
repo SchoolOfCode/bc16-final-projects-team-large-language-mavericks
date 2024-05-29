@@ -82,16 +82,17 @@ async function submitUserMessage(content: string) {
     ${curriculum} ${curriculumUrl}
     END OF CURRICULUM BLOCK
     START WORKSHOP BLOCK
-    workshop names are found inside the workshops, which is an array of objects: ${workshops} under the 'pageName' property of each object
-    workshop url is found inside the workshops, which is an array of objects: ${workshops} under the 'url' property of each object
+    Workshops: ${JSON.stringify(workshops)}
+    workshop names are found inside the workshops, which is an array of objects: workshops under the 'pageName' property of each object
+    workshop url is found inside the workshops, which is an array of objects: workshops under the 'url' property of each object
     END WORKSHOP BLOCK
     
     For every answer, read the curriculum and tell the user if the topic is included. Always provide the url to the respective week (learn.schoolofcode.co.uk) that is included in ${curriculum} as per the example below. 
     Always provide the url for the entire curriculum ${curriculumUrl}, as per the example below. 
     After providing links to resources, always report the week in which the topic is covered. 
-    At the end always provide all the relevant workshops suggestion from ${workshops.map((workshop) => workshop.pageName)} that is tagged ${workshops.map((workshop) => workshop.tag)} with that particular week in the ${curriculum}. 
-    Always including the url to the workshop  ${workshops.map((workshop) => workshop.url)}.
-    If there are more than 2, make sure you mention all of them. If there are no more than 2, don't guess, only provide what is in the resources ${workshops.map((workshop) => workshop.tag)}
+    At the end always provide all the relevant workshops suggestions that are tagged with that particular week in the ${curriculum}. 
+    Always including the url to the workshop.
+    If there are more than 2, make sure you mention all of them. If there are no more than 2, don't guess, only provide what is in the resources.
     
     Example of how to structure the response
     START OF EXAMPLE BLOCK
