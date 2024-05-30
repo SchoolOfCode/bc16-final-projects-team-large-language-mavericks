@@ -1,16 +1,57 @@
+import { Client } from '@notionhq/client';
+import { NotionToMarkdown } from 'notion-to-md';
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const n2m = new NotionToMarkdown({ 
+  notionClient: notion
+ });
 
-export async function readExternalContent() {
-    try {
-      // Adjust the path to your Markdown file
-      const response = await fetch('https://raw.githubusercontent.com/SchoolOfCode/bc16-final-projects-team-large-language-mavericks/main/lib/resources.md'); // Adjust the path to your Markdown file
-      if (!response.ok) {
-        throw new Error('Failed to fetch Markdown content');
+function isPageObjectResponse(response: any): response is PageObjectResponse {
+  return response.object === 'page' && 'properties' in response;
+}
+
+ // function to retrieve url, pageName and pageId, filtered by Tag name
+export async function getUrl() {
+  const databaseId: string = process.env.NOTION_API_DB_ID!;
+  const response = await notion.databases.query({
+    database_id: databaseId,
+  });
+
+  console.log(response);
+  let returnObject: Array<{ url: string, pageId: string, pageName: string, tag: string[] }> = [];
+
+  for (let i = 0; i < response.results.length; i++) {
+    const page = response.results[i];
+    if (isPageObjectResponse(page)) {
+      const properties = page.properties;
+      
+      const url = properties["URL"]?.type === 'url' ? properties["URL"].url : null;
+      const name = properties["Name"]?.type === 'title' && properties["Name"].title.length > 0 ? properties["Name"].title[0].plain_text : null;
+      const tags = properties["Tags"]?.type === 'multi_select' ? properties["Tags"].multi_select.map(tag => tag.name) : [];
+
+      if (url && name) {
+        returnObject.push({
+          "url": url,
+          "pageId": page.id,
+          "pageName": name,
+          "tag": tags
+        });
       }
-      const markdownText = await response.text();
-      return markdownText;
-    } catch (error) {
-      console.error('Error reading Markdown content:', error);
-      return '';
     }
+  }
+
+  return returnObject;
+}
+
+// read Notion page content and return in md format
+export async function readNotionPageContent(pageId: string): Promise<string> {
+  try {
+    const mdblocks = await n2m.pageToMarkdown(pageId);
+    const markdownText = n2m.toMarkdownString(mdblocks);
+    return markdownText.parent;
+  } catch (error) {
+    console.error('Error fetching and converting Notion content:', error);
+    return '';
+  }
   }
