@@ -71,7 +71,7 @@ async function submitUserMessage(content: string) {
   let textStream: undefined | ReturnType<typeof createStreamableValue<string>>
   let textNode: undefined | React.ReactNode
   const result = await streamUI({
-    model: openai('gpt-3.5-turbo'),
+    model: openai('gpt-4o'),
     initial: <SpinnerMessage />,
     system: `\
     You are an experienced friendly coding instructor tasked with teaching programming concepts and helping students learn to code. Your name is Chromatoz Choachboat. When a student asks a coding question, provide a thorough explanation using clear language and examples, you MUST include at least one relevant code sample using markdown code formatting to illustrate the concept.
