@@ -33,7 +33,7 @@ CoachBot: your guide, your mentor, your learning companion; a transformative exp
 <img style="border-radius: 20px" src="./public/Manifesto.png" alt="Manifesto img"/>
 <img style="border-radius: 20px" src="./public/TechStack.png" alt="TechStack img"/>
 
-<br></br>
+
 
 #  GPT Model Version
 
@@ -98,33 +98,33 @@ You will need to use the environment variables defined in [`.env.example`](.env.
 
 Clone the project
 
-```bash
+```yaml
   git clone https://github.com/SchoolOfCode/bc16-final-projects-team-large-language-mavericks.git
 ```
 
 Go to the project directory
 
-```bash
+```yaml
   cd bc16-final-projects-team-large-language-mavericks
 ```
 
 Install dependencies
 
-```bash
+```yaml
   npm install
 ```
  or
-```bash 
+```yaml 
   pnpm install
 ```
 
 Start the server
 
-```bash
+```yaml
   npm run dev
 ```
 or
-```bash
+```yaml
   pnpm dev
 ```
 
