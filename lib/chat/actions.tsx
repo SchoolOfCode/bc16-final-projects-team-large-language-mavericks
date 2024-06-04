@@ -33,13 +33,7 @@ async function submitUserMessage(content: string) {
   console.log(notionObject)
   // extract curriculum data
   const { url: curriculumUrl, pageId: curriculumPageId } = notionObject.find((item) => item.tag.includes('curriculum')) || {};
-  // extract workshops data
-  const workshopItems = notionObject.filter((item) => item.tag.includes('workshop'));
-  const workshops = workshopItems.map(({ url, pageName, tag }) => ({
-    url,
-    pageName, 
-    tag
-  }));
+
 
   // store curriculum in md format
   let curriculum: string = ''
@@ -51,8 +45,6 @@ async function submitUserMessage(content: string) {
     console.log('No item found with the tag "curriculum"');
   }
 
-  console.log(workshops)
-  
   
   const aiState = getMutableAIState<typeof AI>()
 
