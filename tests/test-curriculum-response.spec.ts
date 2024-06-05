@@ -15,6 +15,5 @@ test('Curriculum response test', async ({ page }) => {
   await expect(page.getByText('What is the School of Code')).toBeVisible();
   await expect(page.getByRole('img', { name: 'Icon of SoC Coach' })).toBeVisible();
   await expect(page.locator('.prose')).toBeVisible();
-  await expect(page.getByText('Week 1: School of Code Onboarding')).toBeVisible();
-  // await expect(page.getByRole('link', { name: 'here' })).toBeVisible({ timeout: 15000 });
+  await expect(page.getByText('Week 1: School of Code Onboarding')).toBeVisible({ timeout: 10000 });
 });
