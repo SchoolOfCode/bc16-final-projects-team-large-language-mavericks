@@ -16,7 +16,7 @@ await page.getByPlaceholder('Enter your email address').fill('demo@demo.com');
 await page.getByPlaceholder('Enter password').click();
 await page.getByPlaceholder('Enter password').fill('demodemo');
 await page.getByRole('button', { name: 'Log in' }).click();
-await expect(page.getByRole('main').locator('div').filter({ hasText: 'Chat HistoryNew ChatCan I' }).nth(2)).toBeVisible();
+await expect(page.getByRole('main').locator('div').filter({ hasText: 'Chat History' }).nth(2)).toBeVisible();
 await expect(page.getByRole('button', { name: 'Toggle Sidebar' })).toBeVisible();
 await expect(page.getByRole('button', { name: 'de demo@demo.com' })).toBeVisible();
 await page.getByRole('link', { name: 'New Chat' }).click();
